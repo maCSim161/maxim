@@ -33,16 +33,18 @@ unsigned char Time::getMinutes()
 
 	Time Time::operator-(Time & minusTime)
 	{
+		int i;
 	Time result;
 	result.hours=this->hours-minusTime.hours;
-	result.minutes=this->minutes-minusTime.minutes;
-	if (result.minutes >= 60){
+	i = minutes=this->minutes-minusTime.minutes;
+	if (i<0){
 		result.hours--;
-		result.minutes = 256 - 60;
+		i += 60;
 	}
+	result.minutes = i;
 	return result;
 	}
-	/*Time Time::operator*(Time & mulTime)
+	Time Time::operator*(Time & mulTime)
 	{
 		Time result;
 		unsigned char result;
@@ -52,7 +54,7 @@ unsigned char Time::getMinutes()
 		result.hours + (int)result;
 		result.minutes = result%60;
 		return result;
-	}*/
+	}
 	void Time::Result()
 	{
 		cout << this->hours << " hours "<<static_cast<unsigned>(this->minutes) << " minutes " << endl; 
